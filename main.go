@@ -8,6 +8,9 @@ import (
 
 func main() {
 	multiPlex := http.NewServeMux()
+	normDir := http.Dir("./")
+	fileServer := http.FileServer(normDir)
+	multiPlex.Handle("/", fileServer)
 	//fmt.Printf("%T",multiPlex)
 	s := &http.Server{
 		Addr:           ":8080",
